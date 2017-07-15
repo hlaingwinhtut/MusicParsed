@@ -15,10 +15,12 @@ var comparator = function(property) {
   }
 };
 
+const getRandomIndex = function(totalSongs) {
+  return Math.floor(Math.random() * totalSongs) + 1;
+}
 window.onload = function() {
-  var allSongs = {};
+  const allSongs = {};
 
-  // TO DO clean up variable naming, what is sorted even?
   $.ajax({
     url: "./template/allSongs.json",
     dataType: "json",
@@ -54,6 +56,14 @@ window.onload = function() {
         var newSong = $(e.target).data()["id"];
         localStorage.setItem("song", newSong);
       })
+
+      $("#random").click(function() {
+        const randomSong = data[getRandomIndex(data.length)]["id"];
+        localStorage.setItem("song", randomSong);
+        window.location = "./";
+      })
     }
+
   });
+
 };

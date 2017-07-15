@@ -21,7 +21,7 @@
 }
 
 #allSongs {
-    column-count: 3;
+    font-size: 16px;
 }
 .selected {
     background-color: #fffddd;
