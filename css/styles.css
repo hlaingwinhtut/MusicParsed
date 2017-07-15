@@ -48,7 +48,7 @@
 }
 
 .chord {
-    height: 120px;
+    height: 116px;
 }
 
 .ui-helper-hidden-accessible {
@@ -58,7 +58,11 @@
 .songTag {
     break-inside: avoid-column;
 }
-.songTitle {
+a {
     color: var(--main-blue);
     cursor: pointer;
+}
+
+.row {
+    padding-bottom: 5px;
 }
