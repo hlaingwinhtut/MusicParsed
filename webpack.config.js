@@ -8,7 +8,8 @@ module.exports = {
         convert: './js/convert/convert.js',
         import: './js/import.js',
         index: './js/index.js',
-        showAllSongs: './js/showAllSongs.js'
+        showAllSongs: './js/showAllSongs.js',
+        about: './js/about.js',
     },
     output: {
         filename: '[name].[chunkhash].bundle.js',

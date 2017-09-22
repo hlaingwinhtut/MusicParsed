@@ -13,6 +13,10 @@ def hello():
 def allSongs():
     return render_template('allSongs.html', name='allSongs')
 
+@app.route("/about")
+def about():
+    return render_template('about.html', name='about')
+
 @app.route("/convert")
 def convert():
     return render_template('convert.html', name='convert')
@@ -46,5 +50,6 @@ def getSong(artist, title):
 FlaskWebpackExt(app)
 
 if __name__ == '__main__':
+    app.jinja_env.auto_reload = True
     app.run(debug=True, use_reloader=True)
 

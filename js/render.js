@@ -53,17 +53,10 @@ var instrumentsData = {
   }
 };
 
-export var renderChords = function() {
-  const data = songView.getData();
-  var currentInstrument = songView.getInstrument();
-
-  const chordPics = $("#chordPics");
-  if (currentInstrument == 'none') {
-      chordPics.hide();
-      return;
-  }
-  chordPics.show();
-
+// svg information
+// chordsTemplate(svg) => html elements
+// insert into page
+export const renderChordSvg = function(currentInstrument, allChords) {
   var instrumentData = instrumentsData[currentInstrument];
   var chordData = {
     strings: instrumentData.strings,
@@ -77,7 +70,7 @@ export var renderChords = function() {
     fretLines: Array.apply(null, Array(instrumentData.frets)).map(function(_, i) {
       return i + 0.5;
     }),
-    chords: [].concat.apply([], data.allChords.map(function(chord) {
+    chords: [].concat.apply([], allChords.map(function(chord) {
       var m = chord.match(/^([A-G](?:#|x|bb?)?)(.*)$/);
       var c = instrumentData.chords[(pitchToFifths.get(m[1]) * 7 + 12000) % 12][m[2]];
       if (c) {
@@ -119,6 +112,19 @@ export var renderChords = function() {
     }))
   };
   document.getElementById('chordPics').innerHTML = chordsTemplate(chordData);
+}
+export var renderChords = function() {
+  const allChords = songView.getData().allChords;
+  const currentInstrument = songView.getInstrument();
+
+  const chordPics = $("#chordPics");
+  if (currentInstrument == 'none') {
+      chordPics.hide();
+      return;
+  }
+  chordPics.show();
+
+  renderChordSvg(currentInstrument, allChords);
 };
 
 export var rerender = function() {
